@@ -7,7 +7,7 @@
 	<name>plan_common</name>
 	<description>plan_common</description>
 
-<properties>
+	<properties>
 		<!-- spring版本号 -->
 		<spring.version>4.0.0.RELEASE</spring.version>
 		<!-- log4j日志文件管理包版本 -->
@@ -100,6 +100,27 @@
 		</dependency>
 
 		<!-- javaee-web-api包 注意和项目使用的JDK版本对应 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.6</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.10</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

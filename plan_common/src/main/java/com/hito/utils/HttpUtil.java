@@ -26,6 +26,8 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import net.sf.json.JSONObject;
+
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
@@ -254,6 +256,93 @@ public class HttpUtil {
 		return rtstr;
 	}
 
+	public static <T> Map<String,Object> postMsg(String url, Map<String,Object> msg,String charSet) {
+		PrintWriter printWriter = null;
+		BufferedReader bufferedReader = null;
+		StringBuffer responseResult = new StringBuffer();
+		HttpURLConnection httpURLConnection = null;
+		String rtstr = "";
+		Map<String,Object> map=new HashMap<>();
+		try {
+		JSONObject obj = JSONObject.fromObject(msg);
+		String requeststr="msg="+obj.toString();
+		
+		
+			URL realUrl = new URL(url);
+			// 打开和URL之间的连接
+			httpURLConnection = (HttpURLConnection) realUrl.openConnection();
+			httpURLConnection.setReadTimeout(SOCKET_CONNECT_TIMEOUT);// 最长10秒的延迟
+			// 设置通用的请求属性
+			httpURLConnection.setRequestProperty("accept", "*/*");
+			httpURLConnection.setRequestProperty("connection", "Keep-Alive");
+			// httpURLConnection.setRequestProperty("Content-Length",String.valueOf(requeststr.length()));
+			httpURLConnection.setRequestProperty("Content-Type",
+					"application/x-www-form-urlencoded");
+			// 发送POST请求必须设置如下两行
+			httpURLConnection.setDoOutput(true);
+			httpURLConnection.setDoInput(true);
+			httpURLConnection.setRequestMethod("POST");
+			LOG.debug("请求：" + requeststr + "," + url);
+			// 获取URLConnection对象对应的输出流
+			printWriter = new PrintWriter(new OutputStreamWriter(
+					httpURLConnection.getOutputStream(), charSet));
+			// 发送请求参数
+			printWriter.write(requeststr);
+			// flush输出流的缓冲
+			printWriter.flush();
+
+			// OutputStream out = httpURLConnection.getOutputStream();
+			//
+			// out.write(requeststr.getBytes("UTF-8"));
+			// out.flush();
+			// out.close();
+
+			// 根据ResponseCode判断连接是否成功
+			int responseCode = httpURLConnection.getResponseCode();
+			if (responseCode != 200) {
+
+			} else {
+
+			}
+			// 定义BufferedReader输入流来读取URL的ResponseData
+			bufferedReader = new BufferedReader(new InputStreamReader(
+					httpURLConnection.getInputStream(), charSet));
+			String line;
+			while ((line = bufferedReader.readLine()) != null) {
+				responseResult.append(line);
+			}
+			rtstr = responseResult.toString();
+			JSONObject jsonMsg = JSONObject.fromObject(rtstr);
+			JSONObject msgBody= JSONObject.fromObject(jsonMsg.getString("msg"));
+			Map<String, Class> classMap = new HashMap<String, Class>();
+			classMap.put("head", Map.class);
+			map=(Map<String,Object>)JSONObject.toBean(msgBody, Map.class,classMap);
+			LOG.debug("响应：" + rtstr);
+		} catch (Exception e) {
+			// e.printStackTrace();
+			LOG.error("POST请求异常", e);
+			Map<String,String> head=new HashMap<>();
+			head.put("ERRCODE", "01");
+			head.put("ERRMSG", "POST请求异常");
+			map.put("head", head);
+			return map;
+		} finally {
+			httpURLConnection.disconnect();
+			try {
+				if (printWriter != null) {
+					printWriter.close();
+				}
+				if (bufferedReader != null) {
+					bufferedReader.close();
+				}
+			} catch (IOException ex) {
+				ex.printStackTrace();
+				LOG.error(ex.getMessage(), ex);
+			}
+		}
+		return map;
+	}
+	
 	public static Map<Object, Object> httpPost(String url,
 			Map<Object, Object> requestParams, String charSet,
 			String contentType) {

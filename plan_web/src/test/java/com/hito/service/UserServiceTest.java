@@ -3,6 +3,7 @@ package com.hito.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.http.protocol.HTTP;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
@@ -23,9 +24,9 @@ public class UserServiceTest extends SpringTestCase    {
     	
     	String url = "http://localhost:8088/plan/server/get";
 //    	String requeststr = "1";
-    	Map<Object, Object> params = new HashMap<Object, Object>();
+    	Map<String, Object> params = new HashMap<String, Object>();
     	params.put("user", "1");
-		Map<Object, Object> user  = HttpUtil.httpPost(url, params);
+		Map<String, Object> user  = HttpUtil.postMsg(url, params,HTTP.UTF_8);
     	
         logger.debug("查找结果" + user);
     }
