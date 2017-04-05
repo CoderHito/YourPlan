@@ -7,13 +7,13 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
 import com.hito.domain.User;
 import com.hito.service.UserService;
 import com.hito.utils.FastJsonUtils;
@@ -34,29 +34,29 @@ public class UserController {
 		return mav;
 	}
 
-	@SuppressWarnings("unchecked")
+	// @SuppressWarnings("unchecked")
+	// @RequestMapping(value = "/server/get")
+	// public Map<Object, Object> get( String msg ) {
+	//
+	// Map<Object, Object> params =(Map<Object, Object>) JSON.parse(msg);
+	// String idx = (String) params.get("user");
+	// User user = userService.selectUserById(idx);
+	// Map<Object, Object> result = new HashMap<Object, Object>();
+	// result.put("user", user);
+	// return result;
+	// // return user.toString();
+	// }
+
 	@RequestMapping(value = "/server/get")
-	public Map<Object, Object> get( String msg ) {
-		
-		Map<Object, Object> params = FastJsonUtils.stringToMap(msg);
+	@ResponseBody
+	public String get2(String msg) {
+		Map<Object, Object> params = (Map<Object, Object>) JSON.parse(msg);
 		String idx = (String) params.get("user");
 		User user = userService.selectUserById(idx);
 		Map<Object, Object> result = new HashMap<Object, Object>();
-		result.put("user", user);
-		return result;
-		// return user.toString();
+		result.put("msg", user);
+		String resultStr = JSON.toJSONString(result);
+		return resultStr;
 	}
-
-	// @RequestMapping(value = "/server/get")
-	// @ResponseBody
-	// public String get2( String msg) {
-	// Map<Object,Object> params = FastJsonUtils.stringToMap(msg);
-	// // String idx = (String) params.get("user");
-	// User user = userService.selectUserById("1");
-	// Map<Object, Object> result = new HashMap<Object, Object>();
-	// result.put("user", user);
-	// // return result;
-	// return user.toString();
-	// }
 
 }

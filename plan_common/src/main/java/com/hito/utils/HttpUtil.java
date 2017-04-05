@@ -256,18 +256,19 @@ public class HttpUtil {
 		return rtstr;
 	}
 
-	public static <T> Map<String,Object> postMsg(String url, Map<String,Object> msg,String charSet) {
+	@SuppressWarnings({ "rawtypes", "unused", "unchecked", "unchecked" })
+	public static <T> Map<String, Object> postMsg(String url,
+			Map<String, Object> msg, String charSet) {
 		PrintWriter printWriter = null;
 		BufferedReader bufferedReader = null;
 		StringBuffer responseResult = new StringBuffer();
 		HttpURLConnection httpURLConnection = null;
 		String rtstr = "";
-		Map<String,Object> map=new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		try {
-		JSONObject obj = JSONObject.fromObject(msg);
-		String requeststr="msg="+obj.toString();
-		
-		
+			JSONObject obj = JSONObject.fromObject(msg);
+			String requeststr = "msg=" + obj.toString();
+
 			URL realUrl = new URL(url);
 			// 打开和URL之间的连接
 			httpURLConnection = (HttpURLConnection) realUrl.openConnection();
@@ -285,7 +286,9 @@ public class HttpUtil {
 			LOG.debug("请求：" + requeststr + "," + url);
 			// 获取URLConnection对象对应的输出流
 			printWriter = new PrintWriter(new OutputStreamWriter(
-					httpURLConnection.getOutputStream(), charSet));
+					httpURLConnection.getOutputStream()));
+			// printWriter = new PrintWriter(new OutputStreamWriter(
+			// httpURLConnection.getOutputStream(), charSet));
 			// 发送请求参数
 			printWriter.write(requeststr);
 			// flush输出流的缓冲
@@ -306,22 +309,27 @@ public class HttpUtil {
 			}
 			// 定义BufferedReader输入流来读取URL的ResponseData
 			bufferedReader = new BufferedReader(new InputStreamReader(
-					httpURLConnection.getInputStream(), charSet));
+					httpURLConnection.getInputStream()));
+			// bufferedReader = new BufferedReader(new InputStreamReader(
+			// httpURLConnection.getInputStream(), charSet));
 			String line;
 			while ((line = bufferedReader.readLine()) != null) {
 				responseResult.append(line);
 			}
 			rtstr = responseResult.toString();
-			JSONObject jsonMsg = JSONObject.fromObject(rtstr);
-			JSONObject msgBody= JSONObject.fromObject(jsonMsg.getString("msg"));
-			Map<String, Class> classMap = new HashMap<String, Class>();
-			classMap.put("head", Map.class);
-			map=(Map<String,Object>)JSONObject.toBean(msgBody, Map.class,classMap);
+			 map = FastJsonUtils.stringToMap(rtstr);
+//			JSONObject jsonMsg = JSONObject.fromObject(rtstr);
+//			JSONObject msgBody = JSONObject
+//					.fromObject(jsonMsg.getString("msg"));
+//			Map<String, Class> classMap = new HashMap<String, Class>();
+//			classMap.put("head", Map.class);
+//			map = (Map<String, Object>) JSONObject.toBean(jsonMsg, Map.class,
+//					classMap);
 			LOG.debug("响应：" + rtstr);
 		} catch (Exception e) {
 			// e.printStackTrace();
 			LOG.error("POST请求异常", e);
-			Map<String,String> head=new HashMap<>();
+			Map<String, String> head = new HashMap<>();
 			head.put("ERRCODE", "01");
 			head.put("ERRMSG", "POST请求异常");
 			map.put("head", head);
@@ -342,7 +350,7 @@ public class HttpUtil {
 		}
 		return map;
 	}
-	
+
 	public static Map<Object, Object> httpPost(String url,
 			Map<Object, Object> requestParams, String charSet,
 			String contentType) {
@@ -369,7 +377,7 @@ public class HttpUtil {
 			httpURLConnection.setDoInput(true);
 			httpURLConnection.setRequestMethod("POST");
 			httpURLConnection.setUseCaches(false);
-//			requeststr = URLEncoder.encode(requeststr, "UTF-8");
+			// requeststr = URLEncoder.encode(requeststr, "UTF-8");
 			LOG.info("请求参数：" + requeststr + "," + url);
 			// 获取URLConnection对象对应的输出流
 			printWriter = new PrintWriter(new OutputStreamWriter(
