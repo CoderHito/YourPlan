@@ -77,7 +77,7 @@ public class UserController {
 			if (password.equals(repsw)) {
 				data.put(Constans.SAME, Constans.YES);
 				int i = userService.insert(parameter);
-				logger.info("插入成功" + i);
+				logger.info(".........插入成功......" + i);
 				data.put(Constans.RESULT, Constans.SUCCESS);
 			} else {
 				data.put(Constans.SAME, Constans.NO);
