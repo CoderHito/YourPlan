@@ -1,5 +1,7 @@
 package com.hito.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User selectUserById(String userId) {
 		return userDao.selectUserById(userId);
+	}
+	
+	@Override
+	public Map<String, Object> selectUserByName(String name) {
+		return userDao.selectUserByName(name);
+	}
+
+	@Override
+	public int insert(Map<String, String> parameter) {
+		return userDao.insert(parameter);
 	}
 
 }

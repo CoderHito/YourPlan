@@ -1,0 +1,160 @@
+html,
+body,
+div {
+	height: 100%;
+	overflow: hidden;
+}
+
+.ui-dialog-title {
+	text-align: center;
+}
+
+a,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-decoration: none;
+}
+
+ul li {
+	display: inline;
+}
+
+.row1 {
+	height: 60px;
+}
+
+.logo {
+	float: left;
+	margin-left: 60px;
+}
+
+.title {
+	position: absolute;
+	left: -9999px;
+}
+
+.row1 .log-reg {
+	width: 100px;
+	float: right;
+	margin-right: 60px;
+}
+
+.login {}
+
+.register {}
+
+.row2 {
+	height: 100%;
+}
+
+.row2title {
+	text-align: center;
+	margin-top: 100px;
+}
+
+.list {}
+
+.li_ {
+	background-color: #0044CC;
+	height: 50px;
+	width: 50px;
+}
+
+.holder {
+	width: 200px;
+	height: 200px;
+	transform: scale(.5);
+}
+
+.intro {
+	line-height: 28px;
+}
+
+.display div {
+	float: left;
+	width: 30%;
+	height: 40%;
+	margin-left: 3%;
+}
+
+.center {
+	text-align: center;
+}
+
+a img {
+	overflow: hidden;
+	margin: 0 auto;
+	-webkit-transform: scale(.6);
+	-webkit-transition: 1s;
+	/* 默认显示 0.6倍的照片 */
+}
+
+a img:hover {
+	-webkit-transform: scale(1);
+}
+
+.login_dialog {
+	background-image: url(../img/login-bg.jpg);
+}
+
+.btns,
+.reg_psw,
+.reg_user,
+.login_psw,
+.login_user {
+	text-align: center;
+}
+
+.register_dialog,
+.login_dialog div {
+	height: 50px;
+	width: auto;
+	margin-top: 5px;
+}
+
+.login_psw,
+.reg_psw,
+.btns {
+	margin-top: 5px;
+}
+
+.login_dialog img {
+	height: 20px;
+}
+
+.register_dialog img {
+	height: 20px;
+}
+
+.login_dialog input {
+	margin-left: 10px;
+	background: none;
+	height: 30px;
+}
+
+.register_dialog input {
+	margin-left: 10px;
+	background: none;
+	height: 30px;
+}
+
+.login_dialog,
+.register_dialog button {
+	background: none;
+}
+
+.btns {
+	margin-top: 10px;
+}
+
+.login_error,
+.reg_error {
+	text-align: center;
+	display: none;
+}
+

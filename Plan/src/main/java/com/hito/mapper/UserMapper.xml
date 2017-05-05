@@ -14,4 +14,15 @@
 	<select id="selectUserById" parameterType="int" resultMap="BaseResultMap">
 		SELECT * FROM t_user WHERE USER_ID = #{userId}
 	</select>
+
+	<!-- 查询单条记录 -->
+	<select id="selectUserByName" parameterType="string" resultType="map">
+		SELECT USER_PASSWORD FROM t_user WHERE USER_NAME = #{name}
+	</select>
+
+	<insert id="insert" parameterType="java.util.Map">
+		INSERT INTO t_user
+		(USER_NAME,USER_PASSWORD) values (${name},${password})
+	</insert>
+
 </mapper>
