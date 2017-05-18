@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hito.dao.UserDao;
-import com.hito.domain.User;
+import com.hito.domain.UserVo;
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService{
 	private UserDao userDao;
 	
 	@Override
-	public User selectUserById(String userId) {
+	public UserVo selectUserById(String userId) {
 		return userDao.selectUserById(userId);
 	}
 	

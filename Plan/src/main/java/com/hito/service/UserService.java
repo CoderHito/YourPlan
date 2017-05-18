@@ -2,10 +2,10 @@ package com.hito.service;
 
 import java.util.Map;
 
-import com.hito.domain.User;
+import com.hito.domain.UserVo;
 
 public interface UserService {
-	User selectUserById(String idx);
+	UserVo selectUserById(String idx);
 
 	Map<String, Object> selectUserByName(String name);
 

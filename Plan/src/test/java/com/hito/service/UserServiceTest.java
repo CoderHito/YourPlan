@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hito.baseTest.SpringTestCase;
-import com.hito.domain.User;
+import com.hito.domain.UserVo;
 import com.hito.service.UserService;
 
 
@@ -16,7 +16,7 @@ public class UserServiceTest extends SpringTestCase    {
 
     @Test
     public void selectUserByIdTest(){
-        User user = userService.selectUserById("10");
+        UserVo user = userService.selectUserById("10");
         logger.debug("查找结果" + user);
     }
 

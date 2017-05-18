@@ -72,10 +72,10 @@
 	<!-- 拦截设置 -->
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
-	<servlet-mapping>
+<!-- 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.css</url-pattern>
 	</servlet-mapping>
@@ -90,11 +90,13 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.png</url-pattern>
 	</servlet-mapping>
+	
+	.jpg
 
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.js</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 
 	<!-- 错误跳转页面 -->
 	<error-page>

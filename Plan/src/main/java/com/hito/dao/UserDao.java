@@ -2,10 +2,10 @@ package com.hito.dao;
 
 import java.util.Map;
 
-import com.hito.domain.User;
+import com.hito.domain.UserVo;
 
 public interface UserDao {
-	public User selectUserById(String userId);
+	public UserVo selectUserById(String userId);
 
 	public Map<String, Object> selectUserByName(String name);
 
