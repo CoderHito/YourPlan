@@ -34,6 +34,7 @@ import com.hito.utils.FastJsonUtils;
 @RequestMapping("/server")
 public class UserController {
 
+	private static final String INDEX = "index";
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Resource
 	private UserService userService;
@@ -52,10 +53,10 @@ public class UserController {
 	@RequestMapping("/index.do")
 	public String getIndex(@ModelAttribute("userVo") UserVo userVo,
 			ModelMap model) {
-		if (userVo != null) {
+		if (userVo.getUserName() != null) {
 			model.addAttribute("user_name", userVo.getUserName());
 		}
-		return "index";
+		return INDEX;
 	}
 
 	/**
@@ -68,6 +69,9 @@ public class UserController {
 	@RequestMapping("/todo.do")
 	public String todo(@ModelAttribute("userVo") UserVo userVo, ModelMap model) {
 		logger.info(userVo.toString());
+		if (userVo.getUserName() == null) {
+			return INDEX;
+		}
 		model.addAttribute("user_name", userVo.getUserName());
 		return "todo";
 	}
@@ -81,9 +85,11 @@ public class UserController {
 	 */
 	@RequestMapping("/plan.do")
 	public String plan(@ModelAttribute("userVo") UserVo userVo, ModelMap model) {
-		if (userVo != null) {
-			model.addAttribute("user_name", userVo.getUserName());
+
+		if (userVo.getUserName() == null) {
+			return INDEX;
 		}
+		model.addAttribute("user_name", userVo.getUserName());
 		return "plan";
 	}
 
@@ -96,14 +102,16 @@ public class UserController {
 	 */
 	@RequestMapping("/team.do")
 	public String team(@ModelAttribute("userVo") UserVo userVo, ModelMap model) {
-		if (userVo != null) {
-			model.addAttribute("user_name", userVo.getUserName());
+		if (userVo.getUserName() == null) {
+			return INDEX;
 		}
+		model.addAttribute("user_name", userVo.getUserName());
 		return "team";
 	}
 
 	/**
 	 * 测试上传图片
+	 * 
 	 * @param userVo
 	 * @param model
 	 * @return
