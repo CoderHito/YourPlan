@@ -7,4 +7,8 @@ public interface TodoDao {
 
 	public List<Object> getEventsByName(Map<String, String> params);
 
+	public int insertEvent(Map<String, String> parameter);
+
+	public void updateEvent(Map<String, String> params);
+
 }
