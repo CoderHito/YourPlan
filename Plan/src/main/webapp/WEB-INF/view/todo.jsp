@@ -35,6 +35,8 @@
 <link
 	href="<%=request.getContextPath()%>/static/build/css/custom.min.css"
 	rel="stylesheet">
+	
+	
 </head>
 
 <body class="nav-md">
@@ -43,8 +45,8 @@
 			<div class="col-md-3 left_col">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="<%=request.getContextPath()%>/server/index.do" class="site_title"><i class="fa fa-paw"></i>
-							<span>YourPlan!</span></a>
+						<a href="<%=request.getContextPath()%>/server/index.do"
+							class="site_title"><i class="fa fa-paw"></i> <span>YourPlan!</span></a>
 					</div>
 
 					<div class="clearfix"></div>
@@ -70,10 +72,14 @@
 						<div class="menu_section">
 							<!-- <h3>General</h3> -->
 							<ul class="nav side-menu">
-								<li><a href="<%=request.getContextPath()%>/server/index.do"><i class="fa fa-home"></i> 首页 </a></li>
-								<li><a href="<%=request.getContextPath()%>/server/todo.do"><i class="fa fa-edit"></i> 日程 </a></li>
-								<li><a href="<%=request.getContextPath()%>/server/plan.do"><i class="fa fa-desktop"></i> 计划</a></li>
-								<li><a href="<%=request.getContextPath()%>/server/team.do"><i class="fa fa-table"></i> 团队</a></li>
+								<li><a href="<%=request.getContextPath()%>/server/index.do"><i
+										class="fa fa-home"></i> 首页 </a></li>
+								<li><a href="<%=request.getContextPath()%>/server/todo.do"><i
+										class="fa fa-edit"></i> 日程 </a></li>
+								<li><a href="<%=request.getContextPath()%>/server/plan.do"><i
+										class="fa fa-desktop"></i> 计划</a></li>
+								<li><a href="<%=request.getContextPath()%>/server/team.do"><i
+										class="fa fa-table"></i> 团队</a></li>
 							</ul>
 						</div>
 
@@ -97,7 +103,8 @@
 						<li class=""><a href="javascript:;"
 							class="user-profile dropdown-toggle" data-toggle="dropdown"
 							aria-expanded="false"> <img
-								src="<%=request.getContextPath()%>/static/img/img.jpg" alt="">${user_name } <span class=" fa fa-angle-down"></span>
+								src="<%=request.getContextPath()%>/static/img/img.jpg" alt="">${user_name }
+								<span class=" fa fa-angle-down"></span>
 						</a>
 							<ul class="dropdown-menu dropdown-usermenu pull-right">
 								<li><a href="javascript:;"> Profile</a></li>
@@ -259,9 +266,8 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default antoclose"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary antosubmit">Save
-						changes</button>
+						data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary antosubmit">保存</button>
 				</div>
 			</div>
 		</div>
@@ -300,9 +306,8 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default antoclose2"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary antosubmit2">Save
-						changes</button>
+						data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary antosubmit2">保存</button>
 				</div>
 			</div>
 		</div>
@@ -312,20 +317,29 @@
 	<div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
 	<!-- /calendar modal -->
 
+	<!-- JSON -->
+	<script src="<%=request.getContextPath()%>/static/js/json2.js"></script>
 	<!-- jQuery -->
-	<script src="<%=request.getContextPath()%>/static/vendors/jquery/dist/jquery.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/jquery/dist/jquery.js"></script>
 	<!-- Bootstrap -->
-	<script src="<%=request.getContextPath()%>/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/bootstrap/dist/js/bootstrap.js"></script>
 	<!-- FastClick -->
-	<script src="<%=request.getContextPath()%>/static/vendors/fastclick/lib/fastclick.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
-	<script src="<%=request.getContextPath()%>/static/vendors/nprogress/nprogress.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/nprogress/nprogress.js"></script>
 	<!-- FullCalendar -->
-	<script src="<%=request.getContextPath()%>/static/vendors/moment/min/moment.min.js"></script>
-	<script src="<%=request.getContextPath()%>/static/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/moment/min/moment.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/fullcalendar/dist/fullcalendar.js"></script>
 
 	<!-- Custom Theme Scripts -->
-	<script src="<%=request.getContextPath()%>/static/build/js/custom.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/build/js/custom.js"></script>
 
 </body>
 

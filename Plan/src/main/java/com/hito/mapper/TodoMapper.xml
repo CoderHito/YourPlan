@@ -5,8 +5,18 @@
 
 	<select id="getEventsByName" parameterType="java.util.Map"
 		resultType="java.util.Map">
-		select title,start,end from `events` WHERE
-		user_name=#{user_name}
+		SELECT id,title,start,end,url,descr FROM `events` WHERE
+		USER_NAME=#{user_name}
 	</select>
+
+	<insert id="insertEvent" parameterType="java.util.Map">
+		INSERT INTO
+		`EVENTS`(title,descr,start,end,user_name)
+		VALUES(#{title},#{descr},#{start},#{end},#{user_name})
+	</insert>
+	
+	<update id="updateEvent" parameterType="java.util.Map">
+		UPDATE `events` SET title = #{title}, descr=#{descr} WHERE id=#{id}
+	</update>
 
 </mapper>

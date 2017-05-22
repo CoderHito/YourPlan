@@ -18,7 +18,6 @@ public class TodoServiceImpl implements TodoService {
 	private TodoDao todoDao;
 
 	
-	
 	@Override
 	public List<Object> getEventsByName(String user_name) {
 		Map<String, String> params = new HashMap<String, String>();
@@ -27,6 +26,18 @@ public class TodoServiceImpl implements TodoService {
 		eventsList = todoDao.getEventsByName(params);
 		return eventsList;
 
+	}
+
+
+	@Override
+	public int insert(Map<String, String> parameter) {
+		return todoDao.insertEvent(parameter);
+	}
+
+
+	@Override
+	public void updateEvent(Map<String, String> params) {
+		todoDao.updateEvent(params);
 	}
 
 }
