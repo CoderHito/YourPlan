@@ -1,0 +1,50 @@
+.team_kanban {
+	background-color: gainsboro;
+}
+
+.team_kanban_title {
+	text-align: center;
+}
+
+.btn-del {
+	float: right;
+	margin-top: 1%;
+}
+
+.btn-name {
+	width: 50%;
+}
+
+.member_plus {
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+#addMember {
+	top: 30%;
+	width: 50%;
+	left: 25%;
+	outline: none;
+}
+
+.member_plus {
+	margin-left: 5px;
+	margin-top: 8px;
+}
+
+.option_list {
+	padding-right: 5px;
+	float: right;
+}
+
+.yincang {
+	display: none;
+}
+
+.pos{
+	
+}
+
+.no_user {
+	
+}

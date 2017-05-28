@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+.kanban {
+	background-color: gainsboro;
+	text-align: center;
+	/*height: 100%;*/
+}
+
+.team_kanban {
+	background-color: gainsboro;
+}
+
+
+.team_kanban_title {
+	text-align: center;
+}
+
+.btn-del {
+	float: right;
+	margin-top: 1%;
+}
+.btn-name{
+	width: 50%;
+}
+
+.member_plus {
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+#addMember {
+	top: 50%;
+	width:50%;
+	left:25%;
+	outline: none;
+}
+
+.option_list{
+	padding-right: 5px;
+    float: right;
+}

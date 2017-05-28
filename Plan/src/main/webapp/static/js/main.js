@@ -48,7 +48,6 @@ $(function() {
 		var name = $(".login_user_name").val();
 		var password = $(".login_user_psw").val();
 		$.ajax({
-			// TODO 修改为post参数传递不过去
 			url : "http://localhost:8088/Plan/server/login.do",
 			type : "POST",
 			dataType : "json",

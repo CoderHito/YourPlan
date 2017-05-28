@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Meta, title, CSS, favicons, etc. -->
@@ -11,9 +13,12 @@
 
 <title>YourPlan</title>
 
+<link href="<%=request.getContextPath()%>/static/css/team.css"
+	rel="stylesheet">
+
 <!-- Bootstrap -->
 <link
-	href="<%=request.getContextPath()%>/static/vendors/bootstrap/dist/css/bootstrap.min.css"
+	href="<%=request.getContextPath()%>/static/vendors/bootstrap/dist/css/bootstrap.css"
 	rel="stylesheet">
 <!-- Font Awesome -->
 <link
@@ -43,8 +48,8 @@
 			<div class="col-md-3 left_col">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="<%=request.getContextPath()%>/server/index.do" class="site_title"><i class="fa fa-paw"></i>
-							<span>YourPlan!</span></a>
+						<a href="<%=request.getContextPath()%>/server/index.do"
+							class="site_title"><i class="fa fa-paw"></i> <span>YourPlan!</span></a>
 					</div>
 
 					<div class="clearfix"></div>
@@ -70,10 +75,14 @@
 						<div class="menu_section">
 							<!-- <h3>General</h3> -->
 							<ul class="nav side-menu">
-								<li><a href="<%=request.getContextPath()%>/server/index.do"><i class="fa fa-home"></i> 首页 </a></li>
-								<li><a href="<%=request.getContextPath()%>/server/todo.do"><i class="fa fa-edit"></i> 日程 </a></li>
-								<li><a href="<%=request.getContextPath()%>/server/plan.do"><i class="fa fa-desktop"></i> 计划</a></li>
-								<li><a href="<%=request.getContextPath()%>/server/team.do"><i class="fa fa-table"></i> 团队</a></li>
+								<li><a href="<%=request.getContextPath()%>/server/index.do"><i
+										class="fa fa-home"></i> 首页 </a></li>
+								<li><a href="<%=request.getContextPath()%>/server/todo.do"><i
+										class="fa fa-edit"></i> 日程 </a></li>
+								<li><a href="<%=request.getContextPath()%>/server/plan.do"><i
+										class="fa fa-desktop"></i> 计划</a></li>
+								<li><a href="<%=request.getContextPath()%>/server/team.do"><i
+										class="fa fa-table"></i> 团队</a></li>
 							</ul>
 						</div>
 
@@ -97,7 +106,8 @@
 						<li class=""><a href="javascript:;"
 							class="user-profile dropdown-toggle" data-toggle="dropdown"
 							aria-expanded="false"> <img
-								src="<%=request.getContextPath()%>/static/img/img.jpg" alt="">${user_name } <span class=" fa fa-angle-down"></span>
+								src="<%=request.getContextPath()%>/static/img/img.jpg" alt="">${user_name }
+								<span class=" fa fa-angle-down"></span>
 						</a>
 							<ul class="dropdown-menu dropdown-usermenu pull-right">
 								<li><a href="javascript:;"> Profile</a></li>
@@ -160,52 +170,68 @@
 
 			<!-- page content -->
 			<div class="right_col" role="main">
-				<div class="">
-					<div class="page-title">
-						<div class="title_left">
-							<h3>
-								Calendar <small>Click to add/edit events</small>
-							</h3>
-						</div>
+				<!-- 右边页面 -->
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="team_kanban">
+								<div style="padding: 5px 2px">
+									<div class="team_kanban_title">
+										<span>好友</span> <br />
+									</div>
+									<div class="list-group">
+										<c:forEach items="${friendList}" var="friend">
+											<div class="list-group-item">
+												<div>
+													<img style="width: 10%; margin-left: 5px; margin-top: 0px;"
+														src="<%=request.getContextPath()%>/static/img/img.jpg"
+														alt="..." class="img-circle profile_img">
+													<button type="button"
+														class="btn btn-round btn-info btn-name"
+														style="margin-left: 10px;">${friend.f_name }</button>
+													<button type="button" data-fname="${friend.f_name }"
+														data-toggle="modal" data-target="#delFriend"
+														class="btn btn-round btn-danger btn-sm btn-del">
+														&nbsp;&nbsp;del&nbsp;&nbsp;</button>
+												</div>
+											</div>
+										</c:forEach>
 
-						<div class="title_right">
-							<div
-								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="Search for..."> <span
-										class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
+									</div>
+									<div class="team_kanban_title">
+										<span class="glyphicon glyphicon-plus span_plus"
+											data-type="好友" data-toggle="modal" data-target="#addFriend"></span>
+									</div>
+
 								</div>
 							</div>
 						</div>
-					</div>
-
-					<div class="clearfix"></div>
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="x_panel">
-								<div class="x_title">
-									<h2>
-										Calendar Events <small>Sessions</small>
-									</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-									</ul>
-									<div class="clearfix"></div>
-								</div>
-								<div class="x_content">
-
-									<div id='calendar'></div>
+						<div class="col-md-6">
+							<div class="team_kanban">
+								<div style="padding: 5px 2px">
+									<div class="team_kanban_title">
+										<span>团队</span> <br />
+									</div>
+									<div class="list-group">
+										<c:forEach items="${teamList}" var="team">
+											<div class="list-group-item">
+												<button type="button"
+													class="btn btn-round btn-info btn-name"
+													style="margin-left: 10px;">${team.team_title }</button>
+												<%-- <button type="button" class="list-group-item">${team.team_title}</button> --%>
+												<c:if test="${team.create_p } == ${user_name }">
+													<button type="button" 
+														data-toggle="modal" data-target="#delFriend"
+														class="btn btn-round btn-danger btn-sm btn-del">
+														&nbsp;&nbsp;del&nbsp;&nbsp;</button>
+												</c:if>
+											</div>
+										</c:forEach>
+									</div>
+									<div class="team_kanban_title">
+										<span class="glyphicon glyphicon-plus span_plus"
+											data-type="团队" data-toggle="modal" data-target="#addTeam"></span>
+									</div>
 
 								</div>
 							</div>
@@ -227,105 +253,178 @@
 		</div>
 	</div>
 
-	<!-- calendar modal -->
-	<div id="CalenderModalNew" class="modal fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<!-- Modal -->
+	<div class="modal fade" id="addFriend" tabindex="-1" role="dialog"
+		aria-labelledby="detailLabel">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel">新建日程</h4>
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="detailLabel">查找好友</h4>
 				</div>
 				<div class="modal-body">
-					<div id="testmodal" style="padding: 5px 20px;">
-						<form id="antoform" class="form-horizontal calender" role="form">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Title</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="title" name="title">
-								</div>
+					<form id="plan_form" class="form-horizontal calender" role="form">
+						<input name="plan_id" id="plan_id" type="hidden">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">用户名</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="user_name"
+									name="title">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-9">
-									<textarea class="form-control" style="height: 55px;" id="descr"
-										name="descr"></textarea>
-								</div>
+
+							<div class="alert alert-danger yincang no_user" role="alert">
+								<button type="button" class="close" data-dismiss="alert"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								该用户不存在
 							</div>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default antoclose"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary antosubmit">Save
-						changes</button>
+						data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary find_user">添加</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id="CalenderModalEdit" class="modal fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+	<!-- delFriend modal -->
+	<div class="modal fade" id="delFriend" tabindex="-1" role="dialog"
+		aria-labelledby="detailLabel">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h4 class="modal-title" id="myModalLabel2">编辑日程</h4>
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="detailLabel">删除好友</h4>
 				</div>
 				<div class="modal-body">
-
-					<div id="testmodal2" style="padding: 5px 20px;">
-						<form id="antoform2" class="form-horizontal calender" role="form">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Title</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="title2"
-										name="title2">
-								</div>
+					<form id="plan_form" class="form-horizontal calender" role="form">
+						<input name="plan_id" id="plan_id" type="hidden">
+						<div class="form-group">
+							<label class="col-sm-3 control-label"></label>
+							<div class="col-sm-6">
+								<label class="control-label">确认与该用户解除好友关系？</label>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-9">
-									<textarea class="form-control" style="height: 55px;"
-										id="descr2" name="descr"></textarea>
-								</div>
-							</div>
-
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default antoclose2"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary antosubmit2">Save
-						changes</button>
+					<button type="button" class="btn btn-default antoclose"
+						data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary del_friend">确认</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- delFriend modal -->
+
+	<div id="addMember" class="modal fade" tabindex="1" role="dialog"
+		aria-labelledby="mySmallModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title" id="detailLabel">添加成员</h6>
+				</div>
+				<div class="modal-body">
+					<img style="width: 30px; margin-left: 5px; margin-top: 5px;"
+						src="<%=request.getContextPath()%>/static/img/img.jpg" alt="..."
+						class="img-circle profile_img"> <img
+						style="width: 30px; margin-left: 5px; margin-top: 5px;"
+						src="<%=request.getContextPath()%>/static/img/img.jpg" alt="..."
+						class="img-circle profile_img"> <img
+						style="width: 30px; margin-left: 5px; margin-top: 5px;"
+						src="<%=request.getContextPath()%>/static/img/img.jpg" alt="..."
+						class="img-circle profile_img">
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
-	<div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
-	<!-- /calendar modal -->
+	<div id="addTeam" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title" id="detailLabel">添加团队</h6>
+				</div>
+				<div class="modal-body">
+					<form id="plan_form" class="form-horizontal calender" role="form">
+						<input name="plan_id" id="plan_id" type="hidden">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Title</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="add_team_title"
+									name="title">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">member</label>
+							<div class="member_img">
+								<img style="width: 30px; margin-left: 5px; margin-top: 5px;"
+									title="yourself"
+									src="<%=request.getContextPath()%>/static/img/img.jpg"
+									alt="..." class="img-circle profile_img">
+								<div class="option_list dropdown pos">
+									<span class="glyphicon glyphicon-plus member_plus option_list"
+										data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="true"></span>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<c:forEach items="${friendList}" var="friend">
+											<li><img
+												style="width: 30px; margin-left: 5px; margin-top: 5px;"
+												src="<%=request.getContextPath()%>/static/img/img.jpg"
+												alt="..." class="img-circle profile_img"> <span
+												style="margin-top: 5px; margin-left: 5px;" class="add_fname">${friend.f_name }</span></li>
+											<li role="separator" class="divider"></li>
+										</c:forEach>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default antoclose"
+						data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary btn_add_team">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<!-- jQuery -->
-	<script src="<%=request.getContextPath()%>/static/vendors/jquery/dist/jquery.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap -->
-	<script src="<%=request.getContextPath()%>/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- FastClick -->
-	<script src="<%=request.getContextPath()%>/static/vendors/fastclick/lib/fastclick.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
-	<script src="<%=request.getContextPath()%>/static/vendors/nprogress/nprogress.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/nprogress/nprogress.js"></script>
 	<!-- FullCalendar -->
-	<script src="<%=request.getContextPath()%>/static/vendors/moment/min/moment.min.js"></script>
-	<script src="<%=request.getContextPath()%>/static/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/moment/min/moment.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
 
 	<!-- Custom Theme Scripts -->
-	<script src="<%=request.getContextPath()%>/static/build/js/custom.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/static/build/js/custom.min.js"></script>
+
+	<script src="<%=request.getContextPath()%>/static/js/team.js"></script>
 
 </body>
 

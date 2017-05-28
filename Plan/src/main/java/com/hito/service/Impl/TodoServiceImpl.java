@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hito.dao.TodoDao;
-import com.hito.dao.UserDao;
 import com.hito.service.TodoService;
 
 @Service
@@ -38,6 +37,12 @@ public class TodoServiceImpl implements TodoService {
 	@Override
 	public void updateEvent(Map<String, String> params) {
 		todoDao.updateEvent(params);
+	}
+
+
+	@Override
+	public void delEvent(Map<String, String> params) {
+		todoDao.delEvent(params);
 	}
 
 }

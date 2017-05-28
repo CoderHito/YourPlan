@@ -38,7 +38,6 @@ public class TodoController {
 	@Resource
 	private TodoService todoService;
 
-	// getEvents
 	@RequestMapping("/getEvents.do")
 	@ResponseBody
 	public String getEvents(@ModelAttribute("userVo") UserVo userVo,
@@ -115,4 +114,22 @@ public class TodoController {
 		}
 		return FastJsonUtils.toJSONString(data);
 	}
+	
+	@RequestMapping("/delEvent.do")
+	@ResponseBody
+	public String delEvent (String id){
+		Map<String, String> data = new HashMap<String, String>();
+		Map<String, String> params = new HashMap<String, String>();
+		try {
+			params.put(EventsConstants.ID, id);
+			
+			todoService.delEvent(params);
+			data.put(Constans.RESULT, Constans.SUCCESS);
+			
+		} catch (Exception e) {
+			data.put(Constans.RESULT, Constans.ERROR);
+		}
+		return FastJsonUtils.toJSONString(data);
+	}
+	
 }

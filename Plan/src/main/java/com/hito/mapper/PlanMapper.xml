@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hito.dao.PlanDao">
+
+	<update id="updatePlan" parameterType="java.util.Map">
+		UPDATE plan SET title=
+		#{title}, descr=#{descr}, start=#{start},end=#{end} WHERE id=#{id}
+	</update>
+
+
+	<insert id="newPlan" parameterType="java.util.Map">
+		INSERT INTO
+		plan(title,descr,start,end,user_name,plan_type) VALUES (
+		#{title},#{descr},#{start},#{end},#{user_name},#{plan_type})
+	</insert>
+	
+	<delete id="delPlan" parameterType="java.util.Map" >
+		DELETE FROM  plan WHERE id=#{id}
+	</delete> 
+
+</mapper>

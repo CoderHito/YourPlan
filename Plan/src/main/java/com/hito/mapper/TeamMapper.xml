@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hito.dao.TeamDao">
+
+
+	<select id="findUserByName" resultType="java.util.Map">
+		SELECT * FROM t_user
+		WHERE USER_NAME = #{user_name}
+	</select>
+
+	<insert id="insert" parameterType="java.util.Map">
+		INSERT INTO
+		friends(id,user_name,f_name)
+		VALUES(#{id},#{user_name},#{f_name})
+	</insert>
+
+	<delete id="delFriend" parameterType="java.util.Map">
+		DELETE FROM friends WHERE
+		user_name=#{user_name} AND f_name=#{f_name}
+	</delete>
+	<!-- <update id="updatePlan" parameterType="java.util.Map"> UPDATE plan 
+		SET title= #{title}, descr=#{descr}, start=#{start},end=#{end} WHERE id=#{id} 
+		</update> <insert id="newPlan" parameterType="java.util.Map"> INSERT INTO 
+		plan(title,descr,start,end,user_name,plan_type) VALUES ( #{title},#{descr},#{start},#{end},#{user_name},#{plan_type}) 
+		</insert> -->
+
+	<insert id="createTeam" parameterType="java.util.Map">
+		INSERT INTO
+		team
+		(id,create_p,team_title)
+		VALUES(#{id},#{create_p},#{team_title})
+	</insert>
+
+
+<!-- 	<insert id="selectTeam" parameterType="java.util.Map">
+		INSERT INTO
+		team
+		(id,create_p,team_title)
+		VALUES(#{id},#{create_p},#{team_title})
+	</insert> -->
+	
+	
+
+</mapper>

@@ -3,13 +3,18 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hito.dao.UserDao">
 	<!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！ -->
-	<!-- <resultMap id="BaseResultMap" type="com.hito.domain.User">
-		<id column="USER_ID" property="userId" jdbcType="INTEGER" />
-		<result column="USER_NAME" property="userName" jdbcType="CHAR" />
-		<result column="USER_PASSWORD" property="userPassword"
-			jdbcType="CHAR" />
-		<result column="USER_EMAIL" property="userEmail" jdbcType="CHAR" />
-	</resultMap> -->
+
+	<resultMap type="com.hito.domain.Team" id="team">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="CREATE_P" property="create_p" jdbcType="CHAR" />
+		<result column="TEAM_TITLE" property="team_title" jdbcType="CHAR" />
+	</resultMap>
+
+	<!-- <resultMap id="BaseResultMap" type="com.hito.domain.User"> <id column="USER_ID" 
+		property="userId" jdbcType="INTEGER" /> <result column="USER_NAME" property="userName" 
+		jdbcType="CHAR" /> <result column="USER_PASSWORD" property="userPassword" 
+		jdbcType="CHAR" /> <result column="USER_EMAIL" property="userEmail" jdbcType="CHAR" 
+		/> </resultMap> -->
 	<!-- 查询单条记录 -->
 	<select id="selectUserById" parameterType="int" resultType="java.util.Map">
 		SELECT * FROM t_user WHERE USER_ID = #{userId}
@@ -25,4 +30,28 @@
 		(USER_NAME,USER_PASSWORD) values (#{name},#{password})
 	</insert>
 
+	<select id="getPlan" parameterType="string" resultType="java.util.Map">
+		SELECT *
+		FROM plan WHERE user_name = #{userName}
+	</select>
+	<select id="getFriends" parameterType="string" resultType="java.util.Map">
+		SELECT * FROM friends WHERE user_name = #{user_name}
+	</select>
+	
+	<!-- <select id="getAllTeam" keyProperty="id">
+		select * from team
+	</select> -->
+
+	<select id="getTeams" parameterType="string" resultType="java.util.Map">
+		SELECT *
+		FROM team INNER JOIN members
+		ON team.id = members.team_id
+		<!-- AND (team.create_p=#{user_name} OR members.user_name=#{user_name}) -->
+	</select>
+
+	<select id="getTeamsCreateByYourSelf" parameterType="string"
+		resultType="java.util.Map">
+		SELECT *
+		FROM team where create_p=#{user_name}
+	</select>
 </mapper>

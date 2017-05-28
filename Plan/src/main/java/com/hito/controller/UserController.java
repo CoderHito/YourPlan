@@ -2,9 +2,12 @@ package com.hito.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -85,11 +88,35 @@ public class UserController {
 	 */
 	@RequestMapping("/plan.do")
 	public String plan(@ModelAttribute("userVo") UserVo userVo, ModelMap model) {
-
 		if (userVo.getUserName() == null) {
 			return INDEX;
 		}
-		model.addAttribute("user_name", userVo.getUserName());
+		try {
+			List<Map<String, Object>> plans = userService.getPlan(userVo
+					.getUserName());
+			List<Map<String, Object>> studyPlan = new ArrayList<Map<String, Object>>();
+			List<Map<String, Object>> workPlan = new ArrayList<Map<String, Object>>();
+			List<Map<String, Object>> lifePlan = new ArrayList<Map<String, Object>>();
+
+			for (Map<String, Object> item : plans) {
+				if ("工作".equals(item.get("plan_type").toString())) {
+					workPlan.add(item);
+				} else if ("生活".equals(item.get("plan_type").toString())) {
+					lifePlan.add(item);
+				} else if ("学习".equals(item.get("plan_type").toString())) {
+					studyPlan.add(item);
+				}
+
+			}
+			logger.info("plan    " + plans.toString());
+			model.addAttribute("user_name", userVo.getUserName());
+			model.addAttribute("workPlan", workPlan);
+			model.addAttribute("studyPlan", studyPlan);
+			model.addAttribute("lifePlan", lifePlan);
+
+		} catch (Exception e) {
+
+		}
 		return "plan";
 	}
 
@@ -104,6 +131,23 @@ public class UserController {
 	public String team(@ModelAttribute("userVo") UserVo userVo, ModelMap model) {
 		if (userVo.getUserName() == null) {
 			return INDEX;
+		}
+		List<Map<String, Object>> teamList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> myTeamList = new ArrayList<Map<String,Object>>();
+		List<Map<String, Object>> friendList = new ArrayList<Map<String, Object>>();
+		try {
+			friendList = userService.getFriends(userVo.getUserName());
+			teamList = userService.getTeams(userVo.getUserName());
+			myTeamList = userService.getTeamsCreateByYourSelf(userVo.getUserName());
+			
+			for (Map<String, Object> map : teamList) {
+				
+			}
+			
+			model.addAttribute("teamList", teamList);
+			model.addAttribute("friendList", friendList);
+		} catch (Exception e) {
+
 		}
 		model.addAttribute("user_name", userVo.getUserName());
 		return "team";

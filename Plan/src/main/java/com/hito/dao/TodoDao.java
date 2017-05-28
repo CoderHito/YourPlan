@@ -11,4 +11,6 @@ public interface TodoDao {
 
 	public void updateEvent(Map<String, String> params);
 
+	public void delEvent(Map<String, String> params);
+
 }

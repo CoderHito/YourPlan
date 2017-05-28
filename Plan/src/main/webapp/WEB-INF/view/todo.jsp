@@ -35,8 +35,11 @@
 <link
 	href="<%=request.getContextPath()%>/static/build/css/custom.min.css"
 	rel="stylesheet">
-	
-	
+
+<link href="<%=request.getContextPath()%>/static/css/todo.css"
+	rel="stylesheet">
+
+
 </head>
 
 <body class="nav-md">
@@ -279,7 +282,19 @@
 
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div class="option_list dropdown">
+						<span class="glyphicon glyphicon-list option_list"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a class="todo_complete">完成</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a class="todo_del">删除</a></li>
+						</ul>
+					</div>
+
 					<h4 class="modal-title" id="myModalLabel2">编辑日程</h4>
 				</div>
 				<div class="modal-body">
@@ -321,10 +336,10 @@
 	<script src="<%=request.getContextPath()%>/static/js/json2.js"></script>
 	<!-- jQuery -->
 	<script
-		src="<%=request.getContextPath()%>/static/vendors/jquery/dist/jquery.js"></script>
+		src="<%=request.getContextPath()%>/static/vendors/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap -->
 	<script
-		src="<%=request.getContextPath()%>/static/vendors/bootstrap/dist/js/bootstrap.js"></script>
+		src="<%=request.getContextPath()%>/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- FastClick -->
 	<script
 		src="<%=request.getContextPath()%>/static/vendors/fastclick/lib/fastclick.js"></script>
@@ -335,11 +350,11 @@
 	<script
 		src="<%=request.getContextPath()%>/static/vendors/moment/min/moment.min.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/static/vendors/fullcalendar/dist/fullcalendar.js"></script>
+		src="<%=request.getContextPath()%>/static/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+
 
 	<!-- Custom Theme Scripts -->
-	<script
-		src="<%=request.getContextPath()%>/static/build/js/custom.js"></script>
+	<script src="<%=request.getContextPath()%>/static/build/js/custom.js"></script>
 
 </body>
 

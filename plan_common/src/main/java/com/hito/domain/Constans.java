@@ -12,4 +12,7 @@ public class Constans {
 	public static final String EXIST = "exist";
 	public static final String CURRENTUSER = "currentUser";
 	public static final Object USER_EMAIL = "USER_EMAIL";
+	public static final String YOUR_SELF = "yourself";
+	public static final String F_NAME = "f_name";
+	public static final String ID = "id";
 }

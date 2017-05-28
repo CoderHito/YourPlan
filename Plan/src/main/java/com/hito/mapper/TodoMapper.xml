@@ -18,5 +18,9 @@
 	<update id="updateEvent" parameterType="java.util.Map">
 		UPDATE `events` SET title = #{title}, descr=#{descr} WHERE id=#{id}
 	</update>
+	
+	<delete id="delEvent" parameterType="java.util.Map" >
+		DELETE FROM `events` WHERE id=#{id}
+	</delete>  
 
 </mapper>

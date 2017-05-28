@@ -2754,7 +2754,37 @@ function init_calendar() {
 			$('#title2').val(calEvent.title);
 			$('#descr2').val(calEvent.descr);
 			categoryClass = $("#event_type").val();
-
+			
+			$(".todo_complete").on("click",function(){
+				console.log("complete");
+			})
+			
+			$(".todo_del").on("click",function(){
+				console.log("del");
+				var id = calEvent.id;
+				
+				$.ajax({
+					type:"POST",
+					url:"http://localhost:8088/Plan/todo/delEvent.do",
+					dataType:'json',
+					data : {
+						id : id
+					},
+					async : false,
+					success : function(data) {
+						console.log(data);
+						if (data.result == "error") {
+							alert("保存失败");
+						}
+					}
+				})
+				
+				window.location.reload(true);
+				$('.antoclose2').click();
+				
+			})
+			
+			
 			$(".antosubmit2").on("click", function() {
 				var title = $('#title2').val();
 				var descr2 = $('#descr2').val();
@@ -2788,8 +2818,15 @@ function init_calendar() {
 		editable : true,
 		events : eventt
 	});
-
 };
+
+function todo_complete() {
+	console.log("complete");
+}
+
+function todo_del() {
+	console.log("del");
+}
 
 /* DATA TABLES */
 
@@ -5195,6 +5232,7 @@ function init_echarts() {
 
 $(document).ready(function() {
 	init_calendar_events_data();
+	init_calendar();
 	// init_sparklines();
 	// init_flot_chart();
 	// init_sidebar();
@@ -5224,7 +5262,6 @@ $(document).ready(function() {
 	// init_gauge();
 	// init_PNotify();
 	// init_starrr();
-	init_calendar();
 	// init_compose();
 	// init_CustomNotification();
 	// init_autosize();
