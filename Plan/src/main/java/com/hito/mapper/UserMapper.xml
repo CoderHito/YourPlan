@@ -43,15 +43,16 @@
 	</select> -->
 
 	<select id="getTeams" parameterType="string" resultType="java.util.Map">
-		SELECT *
+	<!-- 	SELECT *
 		FROM team INNER JOIN members
 		ON team.id = members.team_id
-		<!-- AND (team.create_p=#{user_name} OR members.user_name=#{user_name}) -->
+		AND (team.create_p=#{user_name} OR members.user_name=#{user_name}) -->
+		select * from members where user_name=#{user_name}
 	</select>
 
 	<select id="getTeamsCreateByYourSelf" parameterType="string"
-		resultType="java.util.Map">
-		SELECT *
-		FROM team where create_p=#{user_name}
+	resultType="java.util.Map">
+	SELECT *
+	FROM team where create_p=#{user_name}
 	</select>
 </mapper>

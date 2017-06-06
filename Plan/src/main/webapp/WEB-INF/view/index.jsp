@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="row1">
 			<div class="logo">
-				<a title="YourPlan" href="http://localhost:8088/Plan/server/index.do">
+				<a title="YourPlan" href="/Plan/server/index.do">
 					<h3>YourPlan</h3>
 				</a>
 			</div>
@@ -95,7 +95,7 @@
 				<input class="reg_user_repsw" type="password" placeholder="重复密码" />
 			</div>
 			<!-- <form id="imgupload"
-				action="http://localhost:8088/Plan/upload/uploadFile.do"
+				action="/Plan/upload/uploadFile.do"
 				method="post" enctype="multipart/form-data">
 				<div class="img_upload">
 					<span> 上传头像</span> <input id="img_input2" type="file"

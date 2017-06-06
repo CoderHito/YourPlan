@@ -115,7 +115,7 @@
 										class="badge bg-red pull-right">50%</span> <span>Settings</span>
 								</a></li>
 								<li><a href="javascript:;">Help</a></li>
-								<li><a href="http://localhost:8088/Plan/server/index.do"><i
+								<li><a href="/Plan/server/index.do"><i
 										class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 							</ul></li>
 
@@ -213,18 +213,23 @@
 										<span>团队</span> <br />
 									</div>
 									<div class="list-group">
-										<c:forEach items="${teamList}" var="team">
+										<c:forEach items="${createTeamList}" var="team">
 											<div class="list-group-item">
 												<button type="button"
 													class="btn btn-round btn-info btn-name"
 													style="margin-left: 10px;">${team.team_title }</button>
-												<%-- <button type="button" class="list-group-item">${team.team_title}</button> --%>
-												<c:if test="${team.create_p } == ${user_name }">
-													<button type="button" 
-														data-toggle="modal" data-target="#delFriend"
-														class="btn btn-round btn-danger btn-sm btn-del">
-														&nbsp;&nbsp;del&nbsp;&nbsp;</button>
-												</c:if>
+												<button type="button" data-team="${team.team_title}"
+													data-toggle="modal" data-target="#delTeam"
+													class="btn btn-round btn-danger btn-sm btn-del">
+													&nbsp;&nbsp;del&nbsp;&nbsp;</button>
+											</div>
+										</c:forEach>
+
+										<c:forEach items="${memberTeamList}" var="team">
+											<div class="list-group-item">
+												<button type="button"
+													class="btn btn-round btn-info btn-name"
+													style="margin-left: 10px;">${team.team_title }</button>
 											</div>
 										</c:forEach>
 									</div>

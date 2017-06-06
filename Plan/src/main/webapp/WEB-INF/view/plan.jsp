@@ -115,7 +115,7 @@
 										class="badge bg-red pull-right">50%</span> <span>Settings</span>
 								</a></li>
 								<li><a href="javascript:;">Help</a></li>
-								<li><a href="http://localhost:8088/Plan/server/index.do"><i
+								<li><a href="/Plan/server/index.do"><i
 										class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 							</ul></li>
 

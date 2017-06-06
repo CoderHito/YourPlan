@@ -6,7 +6,7 @@ $(function() {
 
 		$.ajax({
 			type : "POST",
-			url : "http://localhost:8088/Plan/team/findUserByName.do",
+			url : "/Plan/team/findUserByName.do",
 			dataType : "json",
 			data : {
 				user_name : name
@@ -37,7 +37,7 @@ $(function() {
 		console.log(fname);
 		$.ajax({
 			type : "POST",
-			url : "http://localhost:8088/Plan/team/delFriend.do",
+			url : "/Plan/team/delFriend.do",
 			dataType : "json",
 			data : {
 				fname : fname
@@ -61,7 +61,7 @@ $(function() {
 		
 		$.ajax({
 			type : "POST",
-			url : "http://localhost:8088/Plan/team/newTeam.do",
+			url : "/Plan/team/newTeam.do",
 			dataType : "json",
 			data : {
 				team_title:team_title

@@ -21,7 +21,7 @@ import com.hito.utils.FastJsonUtils;
 
 @Controller
 @SessionAttributes("userVo")
-@RequestMapping("/plan")
+@RequestMapping(value = "/plan")
 public class PlanController {
 	private Logger logger = LoggerFactory.getLogger(PlanController.class);
 
@@ -82,11 +82,10 @@ public class PlanController {
 		}
 		return FastJsonUtils.toJSONString(data);
 	}
-	
+
 	@RequestMapping("/delPlan.do")
 	@ResponseBody
-	public String delPlan(@ModelAttribute("userVo") UserVo userVo,
-			String id) {
+	public String delPlan(@ModelAttribute("userVo") UserVo userVo, String id) {
 		Map<String, String> data = new HashMap<String, String>();
 		Map<String, String> params = new HashMap<String, String>();
 		String user_name = userVo.getUserName();

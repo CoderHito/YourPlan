@@ -2666,7 +2666,7 @@ var eventt;
 
 function init_calendar_events_data() {
 	$.ajax({
-		url : "http://localhost:8088/Plan/todo/getEvents.do",
+		url : "/Plan/todo/getEvents.do",
 		type : "GET",
 		dataType : "json",
 		async : false,
@@ -2726,7 +2726,7 @@ function init_calendar() {
 				}
 				$.ajax({
 					type : "POST",
-					url : "http://localhost:8088/Plan/todo/newEvent.do",
+					url : "/Plan/todo/newEvent.do",
 					dataType : "json",
 					data : {
 						title : title,
@@ -2765,7 +2765,7 @@ function init_calendar() {
 				
 				$.ajax({
 					type:"POST",
-					url:"http://localhost:8088/Plan/todo/delEvent.do",
+					url:"/Plan/todo/delEvent.do",
 					dataType:'json',
 					data : {
 						id : id
@@ -2794,7 +2794,7 @@ function init_calendar() {
 				calendar.fullCalendar('updateEvent', calEvent);
 				$.ajax({
 					type : "POST",
-					url : "http://localhost:8088/Plan/todo/updateEvent.do",
+					url : "/Plan/todo/updateEvent.do",
 					dataType : "json",
 					data : {
 						title : title,

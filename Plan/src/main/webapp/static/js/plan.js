@@ -30,7 +30,7 @@ $(function() {
 		
 		$.ajax({
 			type : "POST",
-			url : "http://localhost:8088/Plan/plan/delPlan.do",
+			url : "/Plan/plan/delPlan.do",
 			dataType : "json",
 			data : {
 				id : plan_id,
@@ -41,7 +41,7 @@ $(function() {
 				if (data.result == "error") {
 					alert("保存失败");
 				} else {
-					// window.location.href("http://localhost:8088/Plan/server/plan.do");
+					// window.location.href("/Plan/server/plan.do");
 					location.reload();
 				}
 			}
@@ -61,7 +61,7 @@ $(function() {
 
 		$.ajax({
 			type : "POST",
-			url : "http://localhost:8088/Plan/plan/updatePlan.do",
+			url : "/Plan/plan/updatePlan.do",
 			dataType : "json",
 			data : {
 				id : plan_id,
@@ -76,7 +76,7 @@ $(function() {
 				if (data.result == "error") {
 					alert("保存失败");
 				} else {
-					// window.location.href("http://localhost:8088/Plan/server/plan.do");
+					// window.location.href("/Plan/server/plan.do");
 					location.reload();
 				}
 			}
@@ -92,7 +92,7 @@ $(function() {
 
 		$.ajax({
 			type : "POST",
-			url : "http://localhost:8088/Plan/plan/newPlan.do",
+			url : "/Plan/plan/newPlan.do",
 			dataType : "json",
 			data : {
 				plan_type : new_type,
@@ -107,7 +107,7 @@ $(function() {
 				if (data.result == "error") {
 					alert("保存失败");
 				} else {
-					// window.location.href("http://localhost:8088/Plan/server/plan.do");
+					// window.location.href("/Plan/server/plan.do");
 					location.reload();
 				}
 			}

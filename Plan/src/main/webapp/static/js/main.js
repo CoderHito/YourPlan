@@ -48,7 +48,7 @@ $(function() {
 		var name = $(".login_user_name").val();
 		var password = $(".login_user_psw").val();
 		$.ajax({
-			url : "http://localhost:8088/Plan/server/login.do",
+			url : "/Plan/server/login.do",
 			type : "POST",
 			dataType : "json",
 			data : {
@@ -58,7 +58,7 @@ $(function() {
 			success : function(data) {
 				if (data.result == "success") {
 					// TODO
-					window.location.href = "http://localhost:8088/Plan/server/todo.do";
+					window.location.href = "/Plan/server/todo.do";
 				} else {
 					// TODO 居中
 					$(".login_error").css("display", "inline");
@@ -106,7 +106,7 @@ $(function() {
 		}*/
 		
 		$.ajax({
-			url : "http://localhost:8088/Plan/server/register.do",
+			url : "/Plan/server/register.do",
 			type : "POST",
 			dataType : "json",
 			data : {
@@ -119,7 +119,7 @@ $(function() {
 				console.log(data);
 				if (data.result == "success") {
 					// TODO
-					window.location.href = "http://localhost:8088/Plan/server/todo.do";
+					window.location.href = "/Plan/server/todo.do";
 				} else {
 					// TODO 居中
 					$(".reg_error").css("display", "inline");

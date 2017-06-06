@@ -11,7 +11,7 @@
 
 	<insert id="insertEvent" parameterType="java.util.Map">
 		INSERT INTO
-		`EVENTS`(title,descr,start,end,user_name)
+		`events`(title,descr,start,end,user_name)
 		VALUES(#{title},#{descr},#{start},#{end},#{user_name})
 	</insert>
 	

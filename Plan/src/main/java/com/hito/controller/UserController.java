@@ -1,31 +1,21 @@
 package com.hito.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.hito.domain.Constans;
 import com.hito.domain.UserVo;
@@ -132,19 +122,34 @@ public class UserController {
 		if (userVo.getUserName() == null) {
 			return INDEX;
 		}
-		List<Map<String, Object>> teamList = new ArrayList<Map<String, Object>>();
-		List<Map<String, Object>> myTeamList = new ArrayList<Map<String,Object>>();
+		// List<Map<String, Object>> teamList = new ArrayList<Map<String,
+		// Object>>();
+		List<Map<String, Object>> creatTeamList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> memberTeamList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> friendList = new ArrayList<Map<String, Object>>();
 		try {
 			friendList = userService.getFriends(userVo.getUserName());
-			teamList = userService.getTeams(userVo.getUserName());
-			myTeamList = userService.getTeamsCreateByYourSelf(userVo.getUserName());
+			// teamList = userService.getTeams(userVo.getUserName());
+			creatTeamList = userService.getTeamsCreateByYourSelf(userVo
+					.getUserName());
+			memberTeamList = userService.getTeams(userVo.getUserName());
 			
-			for (Map<String, Object> map : teamList) {
-				
+			List<Object> createIds= new ArrayList<Object>();
+			int i = 0;
+			for (Map<String,Object> map : creatTeamList) {
+				createIds.add(map.get("id"));
 			}
 			
-			model.addAttribute("teamList", teamList);
+			for (Iterator iterator = memberTeamList.iterator(); iterator.hasNext();) {
+				 Map<String, Object> map = (Map<String, Object>) iterator.next();
+				 if (createIds.contains(map.get("team_id"))){
+					 iterator.remove();
+				 }
+			}
+			
+			// model.addAttribute("teamList", teamList);
+			model.addAttribute("createTeamList", creatTeamList);
+			model.addAttribute("memberTeamList", memberTeamList);
 			model.addAttribute("friendList", friendList);
 		} catch (Exception e) {
 
@@ -176,7 +181,7 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/login.do")
+	@RequestMapping(value="/login.do")
 	@ResponseBody
 	public String login(String name, String password, ModelMap model) {
 		Map<String, Object> data = new HashMap<String, Object>();
